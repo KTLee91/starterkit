@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm --version)",
+      "Bash(npx --version)",
+      "WebSearch",
+      "WebFetch(domain:ui.shadcn.com)",
+      "WebFetch(domain:dev.to)",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --turbopack --no-git)"
+    ]
+  }
+}
