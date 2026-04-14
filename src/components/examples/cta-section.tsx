@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Github, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 export function CtaSection() {
@@ -32,7 +32,6 @@ export function CtaSection() {
             variant="outline"
             className="bg-primary-foreground/10 border-primary-foreground/30 hover:bg-primary-foreground/20 text-primary-foreground gap-2 w-full sm:w-auto"
           >
-            <Github className="h-5 w-5" />
             GitHub에서 보기
           </Button>
         </Link>

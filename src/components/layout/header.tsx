@@ -49,10 +49,8 @@ export function Header() {
 
         {/* 모바일 메뉴 */}
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
-          <SheetTrigger asChild className="sm:hidden ml-auto mr-2">
-            <Button variant="ghost" size="icon">
-              <Menu className="h-5 w-5" />
-            </Button>
+          <SheetTrigger className="sm:hidden ml-auto mr-2 h-10 w-10 inline-flex items-center justify-center rounded-md hover:bg-accent hover:text-accent-foreground">
+            <Menu className="h-5 w-5" />
           </SheetTrigger>
           <SheetContent side="left" className="w-64">
             <SheetHeader>

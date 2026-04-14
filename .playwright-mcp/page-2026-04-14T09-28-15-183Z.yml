@@ -1,0 +1,179 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - link "Next.js Starter Kit" [ref=e5] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e6]: Next.js
+          - generic [ref=e7]: Starter Kit
+        - separator
+        - navigation [ref=e8]:
+          - link "홈" [ref=e9] [cursor=pointer]:
+            - /url: /
+          - link "컴포넌트" [ref=e10] [cursor=pointer]:
+            - /url: /examples/components
+          - link "대시보드" [ref=e11] [cursor=pointer]:
+            - /url: /examples/dashboard
+          - link "인증" [ref=e12] [cursor=pointer]:
+            - /url: /examples/auth
+          - link "설정" [ref=e13] [cursor=pointer]:
+            - /url: /examples/settings
+        - generic [ref=e14]:
+          - button "테마 전환" [ref=e15]:
+            - img
+          - button "시작하기" [ref=e16]
+    - main [ref=e17]:
+      - generic [ref=e18]:
+        - generic [ref=e19]:
+          - heading "컴포넌트 갤러리" [level=1] [ref=e20]
+          - paragraph [ref=e21]: 모든 shadcn/ui 컴포넌트와 사용 예시입니다
+        - generic [ref=e22]:
+          - heading "Button" [level=2] [ref=e23]
+          - generic [ref=e24]:
+            - button "Default" [ref=e25]
+            - button "Secondary" [ref=e26]
+            - button "Outline" [ref=e27]
+            - button "Ghost" [ref=e28]
+            - button "Destructive" [ref=e29]
+            - button "Disabled" [disabled]
+            - button "Small" [ref=e30]
+            - button "Large" [ref=e31]
+        - generic [ref=e32]:
+          - heading "Badge" [level=2] [ref=e33]
+          - generic [ref=e34]:
+            - generic [ref=e35]: Default
+            - generic [ref=e36]: Secondary
+            - generic [ref=e37]: Outline
+            - generic [ref=e38]: Destructive
+        - generic [ref=e39]:
+          - heading "Input" [level=2] [ref=e40]
+          - generic [ref=e41]:
+            - textbox "이메일 주소 입력..." [ref=e42]
+            - textbox "비밀번호 입력..." [ref=e43]
+            - textbox "비활성화됨" [disabled]
+        - generic [ref=e44]:
+          - heading "Card" [level=2] [ref=e45]
+          - generic [ref=e46]:
+            - generic [ref=e47]:
+              - generic [ref=e48]:
+                - img [ref=e49]
+                - generic [ref=e51]: 성공
+              - paragraph [ref=e53]: 성공 상태의 카드 예시입니다.
+            - generic [ref=e54]:
+              - generic [ref=e55]:
+                - img [ref=e56]
+                - generic [ref=e58]: 정보
+              - paragraph [ref=e60]: 정보 상태의 카드 예시입니다.
+            - generic [ref=e61]:
+              - generic [ref=e62]:
+                - img [ref=e63]
+                - generic [ref=e65]: 오류
+              - paragraph [ref=e67]: 오류 상태의 카드 예시입니다.
+        - generic [ref=e68]:
+          - heading "Alert" [level=2] [ref=e69]
+          - generic [ref=e70]:
+            - alert [ref=e71]:
+              - img [ref=e72]
+              - generic [ref=e74]: "정보 메시지: 사용자에게 알려줄 일반적인 정보입니다."
+            - alert [ref=e75]:
+              - img [ref=e76]
+              - generic [ref=e78]: "경고 메시지: 주의가 필요한 상황입니다."
+            - alert [ref=e79]:
+              - img [ref=e80]
+              - generic [ref=e82]: "오류 메시지: 문제가 발생했습니다."
+        - generic [ref=e83]:
+          - heading "Checkbox & Switch" [level=2] [ref=e84]
+          - generic [ref=e85]:
+            - generic [ref=e86]:
+              - generic [ref=e88]: Checkbox
+              - generic [ref=e89]:
+                - generic [ref=e90]:
+                  - checkbox [ref=e91]
+                  - checkbox [ref=e92]
+                  - generic [ref=e93]: 옵션 1
+                - generic [ref=e94]:
+                  - checkbox [ref=e95]
+                  - checkbox [ref=e96]
+                  - generic [ref=e97]: 옵션 2
+                - generic [ref=e98]:
+                  - checkbox [ref=e99]
+                  - checkbox [ref=e100]
+                  - generic [ref=e101]: 옵션 3
+            - generic [ref=e102]:
+              - generic [ref=e104]: Switch
+              - generic [ref=e105]:
+                - generic [ref=e106]:
+                  - generic [ref=e107]: 알림 활성
+                  - switch [ref=e108]
+                  - checkbox [ref=e109]
+                - generic [ref=e110]:
+                  - generic [ref=e111]: 다크모드
+                  - switch [ref=e112]
+                  - checkbox [ref=e113]
+                - generic [ref=e114]:
+                  - generic [ref=e115]: 자동저장
+                  - switch [ref=e116]
+                  - checkbox [ref=e117]
+        - generic [ref=e118]:
+          - heading "Progress" [level=2] [ref=e119]
+          - generic [ref=e120]:
+            - generic [ref=e121]:
+              - paragraph [ref=e122]: 25%
+              - progressbar [ref=e123]: x
+            - generic [ref=e126]:
+              - paragraph [ref=e127]: 50%
+              - progressbar [ref=e128]: x
+            - generic [ref=e131]:
+              - paragraph [ref=e132]: 100%
+              - progressbar [ref=e133]: x
+        - heading "Skeleton (로딩 상태)" [level=2] [ref=e137]
+        - generic [ref=e144]:
+          - heading "Tabs" [level=2] [ref=e145]
+          - generic [ref=e146]:
+            - tablist [ref=e147]:
+              - tab "미리보기" [selected] [ref=e148]
+              - tab "코드" [ref=e149]
+              - tab "문서" [ref=e150]
+            - tabpanel [ref=e151]:
+              - generic [ref=e152]:
+                - paragraph [ref=e153]: 탭 컨텐츠 미리보기
+                - paragraph [ref=e154]: 이곳에 탭별 콘텐츠를 표시합니다.
+        - generic [ref=e155]:
+          - heading "Form" [level=2] [ref=e156]
+          - paragraph [ref=e157]: react-hook-form + zod를 사용한 실시간 검증 예시
+          - generic [ref=e158]:
+            - generic [ref=e160]: 폼 예시 (react-hook-form + zod)
+            - generic [ref=e162]:
+              - generic [ref=e163]:
+                - generic [ref=e164]: 이름
+                - textbox "이름" [ref=e165]:
+                  - /placeholder: 홍길동
+              - generic [ref=e166]:
+                - generic [ref=e167]: 이메일
+                - textbox "이메일" [ref=e168]:
+                  - /placeholder: you@example.com
+              - generic [ref=e169]:
+                - generic [ref=e170]: 주제
+                - combobox [ref=e171]:
+                  - generic [ref=e172]: 주제를 선택해주세요
+                  - img: ▼
+                - textbox [ref=e173]
+              - generic [ref=e174]:
+                - generic [ref=e175]: 메시지
+                - textbox "메시지" [ref=e176]:
+                  - /placeholder: 메시지를 입력해주세요 (최소 10자)
+              - generic [ref=e177]:
+                - checkbox [ref=e178]
+                - checkbox [ref=e179]
+                - generic [ref=e180]: 뉴스레터 구독하기
+              - generic [ref=e181]:
+                - button "제출" [ref=e182]
+                - button "초기화" [ref=e183]
+              - paragraph [ref=e185]:
+                - text: "현재 폼 데이터:"
+                - text: "{ \"name\": \"\", \"email\": \"\", \"subject\": \"\", \"message\": \"\", \"subscribe\": false }"
+    - contentinfo [ref=e186]:
+      - paragraph [ref=e187]: Next.js v15 + TailwindCSS v4 + shadcn/ui 스타터킷
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=e193] [cursor=pointer]:
+    - img [ref=e194]

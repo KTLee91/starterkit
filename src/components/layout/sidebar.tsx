@@ -11,7 +11,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Button } from "@/components/ui/button";
 import {
   LayoutDashboard,
   Component,
@@ -82,23 +81,18 @@ export function Sidebar() {
       {/* 하단 프로필 */}
       <div className="border-t border-sidebar-border p-4">
         <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button
-              variant="ghost"
-              className="w-full justify-between px-2 text-left h-auto py-2"
-            >
-              <div className="flex items-center gap-3 flex-1">
-                <Avatar className="h-8 w-8">
-                  <AvatarImage src="https://github.com/shadcn.png" />
-                  <AvatarFallback>CN</AvatarFallback>
-                </Avatar>
-                <div className="flex flex-col gap-0">
-                  <span className="text-xs font-medium">사용자</span>
-                  <span className="text-xs text-muted-foreground">user@example.com</span>
-                </div>
+          <DropdownMenuTrigger className="w-full justify-between px-2 text-left h-auto py-2 inline-flex items-center gap-3 rounded-md hover:bg-sidebar-accent hover:text-sidebar-accent-foreground">
+            <div className="flex items-center gap-3 flex-1">
+              <Avatar className="h-8 w-8">
+                <AvatarImage src="https://github.com/shadcn.png" />
+                <AvatarFallback>CN</AvatarFallback>
+              </Avatar>
+              <div className="flex flex-col gap-0">
+                <span className="text-xs font-medium">사용자</span>
+                <span className="text-xs text-muted-foreground">user@example.com</span>
               </div>
-              <ChevronUp className="h-4 w-4" />
-            </Button>
+            </div>
+            <ChevronUp className="h-4 w-4" />
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-56">
             <DropdownMenuItem>

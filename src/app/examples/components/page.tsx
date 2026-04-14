@@ -11,6 +11,7 @@ import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
 import { Skeleton } from "@/components/ui/skeleton";
 import { AlertCircle, Check, Info, AlertTriangle } from "lucide-react";
+import { FormGallery } from "@/components/examples/form-gallery";
 
 export const metadata: Metadata = {
   title: "컴포넌트 갤러리",
@@ -208,6 +209,15 @@ export default function ComponentsPage() {
             </p>
           </TabsContent>
         </Tabs>
+      </section>
+
+      {/* Form */}
+      <section className="space-y-4">
+        <h2 className="text-xl font-semibold">Form</h2>
+        <p className="text-muted-foreground">
+          react-hook-form + zod를 사용한 실시간 검증 예시
+        </p>
+        <FormGallery />
       </section>
     </div>
   );
