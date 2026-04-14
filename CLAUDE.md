@@ -4,9 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 프로젝트 개요
 
-Next.js 16 + React 19 + TypeScript + TailwindCSS v4 기반의 프로덕션 레디 스타터킷입니다. shadcn/ui 컴포넌트와 next-themes를 통한 다크모드 지원을 포함합니다.
+Next.js 16 + React 19 + TypeScript + TailwindCSS v4 기반의 프로덕션 레디 스타터킷입니다. shadcn/ui 컴포넌트, next-themes를 통한 다크모드, 그리고 Zod 기반 폼 검증을 포함합니다.
 
-**주의**: AGENTS.md 파일의 경고를 반드시 확인하세요. Next.js v16은 훈련 데이터와 다른 Breaking Changes를 포함하고 있습니다. 코드 작성 전에 `node_modules/next/dist/docs/`의 관련 가이드를 읽어야 합니다.
+**주의**: Next.js v16은 훈련 데이터와 다른 Breaking Changes를 포함하고 있습니다. 코드 작성 전에 `node_modules/next/dist/docs/`의 관련 가이드를 읽어야 합니다.
 
 ## 커맨드
 
@@ -92,8 +92,13 @@ src/
 | TailwindCSS | ^4 | 유틸리티 CSS (CSS-first) |
 | shadcn/ui | ^4.2.0 | 접근성 기반 UI 컴포넌트 |
 | next-themes | ^0.4.6 | 다크모드 관리 |
-| Base UI | ^1.3.0 | 무스타일드 컴포넌트 |
+| Base UI | ^1.3.0 | 무스타일드 컴포넌트 (Radix 대체) |
 | lucide-react | ^1.8.0 | SVG 아이콘 (1000+ 종류) |
+| Zod | ^4.3.6 | 폼 검증 및 데이터 파싱 |
+| Sonner | ^2.0.7 | 토스트 알림 |
+| react-hook-form | ^7.72.1 | 폼 상태 관리 (선택사항) |
+| recharts | ^3.8.0 | 반응형 차트 라이브러리 |
+| @tanstack/react-table | ^8.21.3 | 고급 테이블 컴포넌트 |
 
 ## Next.js 15/16 Breaking Changes
 
@@ -211,9 +216,145 @@ Google Fonts (Geist)가 기본으로 설정되어 있습니다:
 
 커스텀 폰트 사용 시 `src/app/layout.tsx` 수정.
 
+## 폼 처리 및 검증 가이드
+
+### Zod 기반 폼 검증 패턴
+
+폼 검증은 **Zod만 사용**하는 것을 권장합니다. react-hook-form은 선택사항입니다.
+
+```tsx
+"use client";
+
+import { useState } from "react";
+import * as z from "zod";
+import { toast } from "sonner";
+
+// 1. Zod 스키마 정의
+const loginSchema = z.object({
+  email: z.string().email("올바른 이메일을 입력해주세요"),
+  password: z.string().min(6, "비밀번호는 최소 6자 이상이어야 합니다"),
+});
+
+export default function LoginForm() {
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
+  // 2. FormEvent에서 FormData 추출
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setErrors({});
+
+    const formData = new FormData(e.currentTarget);
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
+
+    try {
+      // 3. Zod로 검증
+      loginSchema.parse({ email, password });
+      
+      // 4. 성공 처리
+      toast.success("로그인 성공!");
+      (e.currentTarget as HTMLFormElement).reset();
+    } catch (error) {
+      // 5. 오류 처리
+      if (error instanceof z.ZodError) {
+        const fieldErrors: Record<string, string> = {};
+        error.issues.forEach((issue) => {
+          if (issue.path[0]) {
+            fieldErrors[issue.path[0] as string] = issue.message;
+          }
+        });
+        setErrors(fieldErrors);
+      }
+    }
+  };
+
+  return (
+    <form onSubmit={onSubmit}>
+      <input name="email" type="email" required />
+      {errors.email && <p className="text-red-500">{errors.email}</p>}
+      
+      <input name="password" type="password" required />
+      {errors.password && <p className="text-red-500">{errors.password}</p>}
+      
+      <button type="submit">로그인</button>
+    </form>
+  );
+}
+```
+
+### 중요 주의사항
+
+- **폼 리셋**: `(e.currentTarget as HTMLFormElement).reset()` 사용
+- **오류 표시**: `error.issues` 배열로 필드별 오류 순회
+- **타입 안전성**: `z.infer<typeof schema>` 사용 권장
+
+## Sonner 토스트 알림
+
+```tsx
+import { toast } from "sonner";
+
+// 기본 알림
+toast("메시지");
+
+// 성공
+toast.success("성공했습니다!");
+
+// 오류
+toast.error("오류가 발생했습니다.");
+
+// 로딩
+const promise = async () => { /* ... */ };
+toast.promise(promise, {
+  loading: "로딩중...",
+  success: "완료!",
+  error: "실패했습니다.",
+});
+```
+
+## Playwright MCP를 이용한 오류 검증
+
+브라우저 콘솔 오류와 UI 렌더링을 확인하려면:
+
+```bash
+# 1. 개발 서버 실행
+npm run dev
+
+# 2. Playwright MCP로 페이지 방문 및 오류 검증
+# Claude Code에서 다음 도구 사용:
+# - mcp__playwright__browser_navigate: 페이지 이동
+# - mcp__playwright__browser_console_messages: 콘솔 오류 확인
+# - mcp__playwright__browser_snapshot: 페이지 구조 확인
+```
+
+모든 페이지에서 콘솔 오류(level: "error")가 없어야 합니다.
+
+## 예제 컴포넌트
+
+### 인증 폼 (`src/components/examples/auth-form.tsx`)
+- 로그인/회원가입 탭 폼
+- Zod 기반 이메일/비밀번호 검증
+- 비밀번호 일치 확인 (refine 사용)
+
+### 폼 갤러리 (`src/components/examples/form-gallery.tsx`)
+- 다양한 폼 입력 컴포넌트 예시
+- 커스텀 오류 메시지 처리
+- FormData 기반 검증
+
+### 대시보드 콘텐츠 (`src/components/examples/dashboard-content.tsx`)
+- Recharts를 사용한 차트 예시
+- 반응형 그리드 레이아웃
+- 클라이언트 컴포넌트 (`"use client"`)
+
+### 설정 폼 (`src/components/examples/settings-form.tsx`)
+- 탭 기반 설정 UI
+- 프로필, 알림, 보안 탭
+- 복합 폼 상태 관리
+
 ## 참고 자료
 
 - [Next.js 16 Documentation](https://nextjs.org/docs)
 - [TailwindCSS v4 Guide](https://tailwindcss.com/docs)
 - [shadcn/ui Components](https://ui.shadcn.com)
+- [Zod Documentation](https://zod.dev)
+- [Sonner Toast](https://sonner.emilkowal.ski)
 - [next-themes GitHub](https://github.com/pacocoursey/next-themes)
