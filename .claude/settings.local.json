@@ -1,14 +1,9 @@
 {
   "permissions": {
-    "allow": [
-      "Bash(npm --version)",
-      "Bash(npx --version)",
-      "WebSearch",
-      "WebFetch(domain:ui.shadcn.com)",
-      "WebFetch(domain:dev.to)",
-      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --turbopack --no-git)",
-      "Bash(npx shadcn-vue@latest init -d)",
-      "Bash(npx shadcn@latest init --defaults)"
+    "allow": [      
+      "WebSearch",      
+      "Bash",
+      "WebFetch"
     ]
   }
 }

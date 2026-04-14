@@ -1,0 +1,1 @@
+- [Next.js v15 Starter Kit 완성](project_setup.md) — TailwindCSS v4, shadcn/ui, 다크모드 포함
