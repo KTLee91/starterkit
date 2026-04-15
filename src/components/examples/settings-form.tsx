@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTheme } from "next-themes";
 import {
   Card,
   CardContent,
@@ -191,7 +192,7 @@ function NotificationTab() {
 }
 
 function AppearanceTab() {
-  const [theme, setTheme] = useState("system");
+  const { theme, setTheme } = useTheme();
   const [language, setLanguage] = useState("ko");
 
   return (

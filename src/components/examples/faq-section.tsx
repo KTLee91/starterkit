@@ -51,7 +51,7 @@ export function FaqSection() {
 
         <Accordion className="w-full">
           {faqs.map((faq, index) => (
-            <AccordionItem key={index} value={`item-${index}`}>
+            <AccordionItem key={faq.question} value={`item-${index}`}>
               <AccordionTrigger className="text-left">
                 {faq.question}
               </AccordionTrigger>

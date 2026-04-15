@@ -186,7 +186,7 @@ export function DashboardContent() {
                     <XAxis dataKey="name" />
                     <YAxis />
                     <Tooltip />
-                    <Bar dataKey="revenue" fill="#3b82f6" radius={[8, 8, 0, 0]} />
+                    <Bar dataKey="revenue" fill="var(--color-chart-1)" radius={[8, 8, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
               </CardContent>
@@ -207,7 +207,7 @@ export function DashboardContent() {
                     <Line
                       type="monotone"
                       dataKey="visitors"
-                      stroke="#10b981"
+                      stroke="var(--color-chart-2)"
                       strokeWidth={2}
                       dot={false}
                     />

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import * as z from "zod";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -37,6 +37,15 @@ export function FormGallery() {
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+    };
+  }, []);
 
   const handleChange = (
     field: keyof ContactFormValues,
@@ -62,7 +71,8 @@ export function FormGallery() {
       contactSchema.parse(formData);
       setIsSubmitted(true);
       setFormData({ name: "", email: "", subject: "", message: "", subscribe: false });
-      setTimeout(() => setIsSubmitted(false), 5000);
+      if (timerRef.current) clearTimeout(timerRef.current);
+      timerRef.current = setTimeout(() => setIsSubmitted(false), 5000);
     } catch (error) {
       if (error instanceof z.ZodError) {
         const fieldErrors: Record<string, string> = {};
@@ -79,7 +89,7 @@ export function FormGallery() {
   return (
     <Card className="max-w-2xl">
       <CardHeader>
-        <CardTitle>폼 예시 (react-hook-form + zod)</CardTitle>
+        <CardTitle>폼 예시 (zod 유효성 검사)</CardTitle>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-6">

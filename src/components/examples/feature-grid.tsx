@@ -12,7 +12,7 @@ const features = [
     icon: Cpu,
     title: "App Router",
     description: "Server Components, 비동기 params 패턴 적용",
-    badge: "Next.js 15",
+    badge: "Next.js 16",
   },
   {
     icon: Palette,
