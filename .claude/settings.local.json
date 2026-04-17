@@ -5,7 +5,9 @@
       "Bash",
       "WebFetch",
       "mcp__playwright",
-      "Bash(timeout 30 bash -c 'while ! curl -s http://localhost:3000 > /dev/null 2>&1; do echo \"waiting...\"; sleep 1; done; echo \"SERVER_READY\"')"
+      "mcp__shadcn-ui",
+      "mcp__sequential-thinking",
+      "Skill(update-config)"
     ]
   }
 }
